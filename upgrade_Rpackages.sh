@@ -23,7 +23,7 @@
 #
 
 # get the dir path where the new packages should be installed
-NEWDIR=$( Rscript -e "cat(normalizePath(Sys.getenv(\"R_LIBS_USER\")))" )
+NEWDIR=$( Rscript -e "cat(normalizePath(Sys.getenv(\"R_LIBS_USER\"), mustWork=FALSE))" )
 # if NEWDIR exists already, abort
 if [ -d "${NEWDIR}" ]; then
   echo "the R-package directory for the current R version (${NEWDIR}) already exists, aborting"
@@ -32,7 +32,7 @@ fi
 
 # if NEWDIR does not exist the packages we want to update are in the most recent R_LIBS_USER directory
 # get the dir path which contains all old packages
-OLDDIR=$( for d in ${HOME}/R/x86_64-pc-linux-gnu-library/*; do echo $PWD/$d; done | sort -n | tail -n 1 )
+OLDDIR=$( for d in ${HOME}/R/x86_64-pc-linux-gnu-library/*; do echo $d; done | sort -n | tail -n 1 )
 # if OLDDIR does not exist abort
 if [ ! -d "${OLDDIR}" ]; then
   echo "no R-package directory for any previous R version exists, aborting"
