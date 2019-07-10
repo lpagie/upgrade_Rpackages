@@ -18,6 +18,6 @@ Any installed package not available on CRAN/BioC will not be installed
 ToDo:  
  - make script more robust
  - make cleaning of the old R-package directories a user controlled option
- - ...
+ - ..
 
 
